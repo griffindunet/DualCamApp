@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>DualCam</string>
+    <key>CFBundleDisplayName</key>
+    <string>DualCam</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.remy.dualcam</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+    <key>NSCameraUsageDescription</key>
+    <string>DualCam utilise la caméra avant et arrière simultanément pour la capture double.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>DualCam utilise le microphone pour enregistrer l'audio avec la vidéo.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>DualCam sauvegarde vos photos et vidéos dans la galerie.</string>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>MinimumOSVersion</key>
+    <string>16.0</string>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>multi-camera</string>
+    </array>
+</dict>
+</plist>
