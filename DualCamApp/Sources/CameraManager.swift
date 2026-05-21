@@ -81,9 +81,9 @@ class CameraManager: NSObject, ObservableObject {
             }
             if let port = backInput.ports(for: .video, sourceDeviceType: backDevice.deviceType, sourceDevicePosition: .back).first {
                 let backConnection = AVCaptureConnection(inputPorts: [port], output: backOutput)
-                if session.canAdd(backConnection) { session.add(backConnection) }
+                if session.canAddConnection(backConnection) { session.addConnection(backConnection) }
                 let backPhotoConnection = AVCaptureConnection(inputPorts: [port], output: backPhotoOutput)
-                if session.canAdd(backPhotoConnection) { session.add(backPhotoConnection) }
+                if session.canAddConnection(backPhotoConnection) { session.addConnection(backPhotoConnection) }
             }
         }
 
@@ -102,9 +102,9 @@ class CameraManager: NSObject, ObservableObject {
             }
             if let port = frontInput.ports(for: .video, sourceDeviceType: frontDevice.deviceType, sourceDevicePosition: .front).first {
                 let frontConnection = AVCaptureConnection(inputPorts: [port], output: frontOutput)
-                if session.canAdd(frontConnection) { session.add(frontConnection) }
+                if session.canAddConnection(frontConnection) { session.addConnection(frontConnection) }
                 let frontPhotoConnection = AVCaptureConnection(inputPorts: [port], output: frontPhotoOutput)
-                if session.canAdd(frontPhotoConnection) { session.add(frontPhotoConnection) }
+                if session.canAddConnection(frontPhotoConnection) { session.addConnection(frontPhotoConnection) }
             }
         }
 
@@ -116,7 +116,7 @@ class CameraManager: NSObject, ObservableObject {
             for output in [backOutput, frontOutput] {
                 if let audioPort = audioInput.ports(for: .audio, sourceDeviceType: audioDevice.deviceType, sourceDevicePosition: .unspecified).first {
                     let audioConn = AVCaptureConnection(inputPorts: [audioPort], output: output)
-                    if session.canAdd(audioConn) { session.add(audioConn) }
+                    if session.canAddConnection(audioConn) { session.addConnection(audioConn) }
                 }
             }
         }

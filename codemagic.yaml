@@ -4,31 +4,26 @@ workflows:
     max_build_duration: 60
     environment:
       xcode: latest
+      cocoapods: default
     scripts:
-      - name: Set build number
-        script: agvtool new-version -all 1
-
-      - name: Archive
+      - name: Build unsigned IPA
         script: |
-          xcodebuild clean archive \
+          xcodebuild \
             -project DualCamApp.xcodeproj \
             -scheme DualCamApp \
             -configuration Release \
             -sdk iphoneos \
-            -archivePath $CM_BUILD_DIR/DualCamApp.xcarchive \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM=""
-
-      - name: Export IPA
-        script: |
-          mkdir -p $CM_BUILD_DIR/ipa
-          cd $CM_BUILD_DIR/DualCamApp.xcarchive/Products/Applications
+            ONLY_ACTIVE_ARCH=NO \
+            -derivedDataPath build/
+          
           mkdir -p Payload
-          cp -r DualCamApp.app Payload/
-          zip -r $CM_BUILD_DIR/ipa/DualCam.ipa Payload/
-          rm -rf Payload
-
+          cp -r build/Build/Products/Release-iphoneos/DualCamApp.app Payload/
+          zip -r DualCam.ipa Payload/
+          rm -rf Payload/
     artifacts:
-      - $CM_BUILD_DIR/ipa/DualCam.ipa
+      - "DualCam.ipa"
+    publishing:
+      email:
+        recipients:
+          - your@email.com
