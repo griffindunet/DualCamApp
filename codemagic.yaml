@@ -4,26 +4,21 @@ workflows:
     max_build_duration: 60
     environment:
       xcode: latest
-      cocoapods: default
     scripts:
-      - name: Build unsigned IPA
+      - name: Build IPA
         script: |
-          xcodebuild \
+          xcodebuild clean build \
             -project DualCamApp.xcodeproj \
             -scheme DualCamApp \
             -configuration Release \
             -sdk iphoneos \
-            CODE_SIGNING_ALLOWED=NO \
-            ONLY_ACTIVE_ARCH=NO \
-            -derivedDataPath build/
+            -archivePath build/DualCamApp.xcarchive \
+            archive \
+            CODE_SIGNING_ALLOWED=NO
           
-          mkdir -p Payload
-          cp -r build/Build/Products/Release-iphoneos/DualCamApp.app Payload/
-          zip -r DualCam.ipa Payload/
-          rm -rf Payload/
+          xcodebuild -exportArchive \
+            -archivePath build/DualCamApp.xcarchive \
+            -exportPath build/output \
+            -exportOptionsPlist ExportOptions.plist
     artifacts:
-      - "DualCam.ipa"
-    publishing:
-      email:
-        recipients:
-          - your@email.com
+      - "build/output/*.ipa"
