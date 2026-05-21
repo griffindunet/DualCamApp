@@ -11,7 +11,6 @@
 		AA02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA02 /* ContentView.swift */; };
 		AA03 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03 /* CameraManager.swift */; };
 		AA04 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04 /* CameraView.swift */; };
-		AA05 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA05 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,7 +126,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA05,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
