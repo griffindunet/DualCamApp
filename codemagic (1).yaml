@@ -1,0 +1,34 @@
+workflows:
+  ios-workflow:
+    name: DualCam iOS Build
+    max_build_duration: 60
+    environment:
+      xcode: latest
+    scripts:
+      - name: Set build number
+        script: agvtool new-version -all 1
+
+      - name: Archive
+        script: |
+          xcodebuild clean archive \
+            -project DualCamApp.xcodeproj \
+            -scheme DualCamApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $CM_BUILD_DIR/DualCamApp.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM=""
+
+      - name: Export IPA
+        script: |
+          mkdir -p $CM_BUILD_DIR/ipa
+          cd $CM_BUILD_DIR/DualCamApp.xcarchive/Products/Applications
+          mkdir -p Payload
+          cp -r DualCamApp.app Payload/
+          zip -r $CM_BUILD_DIR/ipa/DualCam.ipa Payload/
+          rm -rf Payload
+
+    artifacts:
+      - $CM_BUILD_DIR/ipa/DualCam.ipa
