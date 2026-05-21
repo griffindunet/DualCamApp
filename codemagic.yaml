@@ -7,15 +7,15 @@ workflows:
     scripts:
       - name: Archive
         script: |
-          xcodebuild clean archive \\
-            -project DualCamApp.xcodeproj \\
-            -scheme DualCamApp \\
-            -configuration Release \\
-            -sdk iphoneos \\
-            -archivePath $CM_BUILD_DIR/DualCamApp.xcarchive \\
-            CODE_SIGNING_ALLOWED=NO \\
-            CODE_SIGNING_REQUIRED=NO \\
-            CODE_SIGN_IDENTITY="" \\
+          xcodebuild clean archive \
+            -project DualCamApp.xcodeproj \
+            -scheme DualCamApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath $CM_BUILD_DIR/DualCamApp.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM=""
 
       - name: Export IPA
